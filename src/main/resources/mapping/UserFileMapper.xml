@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserFileMapper">
+    <resultMap id="userFileMap" type="com.example.entity.UserFile">
+        <id column="id" property="id"/>
+        <result column="f_name" property="f_name"/>
+        <result column="size" property="size"/>
+        <result column="type" property="type"/>
+        <result column="uid" property="uid"/>
+        <result column="path" property="path"/>
+    </resultMap>
+<!--    List<UserFile> findAllFile();-->
+    <select id="showAllFile" resultMap="userFileMap">
+        select * from file;
+    </select>
+<!--        void saveFile(UserFile file);-->
+    <insert id="saveFile">
+        insert into file values (#{id}, #{f_name}, #{size}, #{type}, #{uid}, #{path});
+    </insert>
+
+<!--    UserFile findFileById(int id);-->
+    <select id="findFileById" resultMap="userFileMap">
+        select * from file where id = #{id}
+    </select>
+<!--    void delete(int id);-->
+    <delete id="delete">
+        delete from file where id = #{id}
+    </delete>
+</mapper>

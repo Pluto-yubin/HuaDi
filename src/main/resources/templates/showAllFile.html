@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>文件列表</h3>
+    <table border="1px">
+        <tr>
+            <th>ID</th>
+            <th>FileName</th>
+            <th>Size</th>
+            <th>Type</th>
+            <th>Path</th>
+            <th>Uid</th>
+            <th>下载</th>
+            <th>删除</th>
+        </tr>
+
+        <!--/*@thymesVar id="files" type="com.example.entity.UserFile"*/-->
+        <tr th:each="file:${files}">
+            <td><!--/*@thymesVar id="id" type="java.lang.Integer"*/-->
+            <span th:text="${file.id}"></span> </td>
+            <td><!--/*@thymesVar id="t_name" type="java.lang.String"*/-->
+            <span th:text="${file.f_name}"/> </td>
+            <td><span th:text="${file.size}" </td>
+            <td><span th:text="${file.type}" </td>
+            <td><span th:text="${file.path}" </td>
+            <td><span th:text="${file.uid}" </td>
+            <td>
+                <a th:href="@{/file/download(id=${file.id})}">下载</a>
+            </td>
+            <td>
+                <a th:href="@{/file/delete(id=${file.id})}">删除</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

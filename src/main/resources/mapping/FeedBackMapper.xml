@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.FeedBackMapper">
+
+    <!--    FeedBack getFeedBack(int fid);-->
+    <select id="getFeedBack" resultType="com.example.entity.FeedBack">
+        select * from feedback where fid = #{fid}
+    </select>
+    <!--    void addFeedBack(FeedBack feedBack);-->
+    <insert id="addFeedBack" >
+        insert into feedback values (#{msg}, #{fid})
+    </insert>
+
+    <!--    Integer getFid(int uid);-->
+    <select id="getFid" resultType="java.lang.Integer">
+--         select  from file join feedback on feedback.fid = file.id
+            select feedback.fid from feedback join file on file.uid = #{uid}
+    </select>
+</mapper>
